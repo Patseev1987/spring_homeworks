@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.bogdan.homework2.model.User;
 import ru.bogdan.homework2.service.UserService;
@@ -37,5 +38,9 @@ public class UserController {
         return "redirect:/users";
     }
 
-    //@GetMapping("user-delete/{id}")
+    @GetMapping("user-delete/{id}")
+    public String deleteUserById(@PathVariable int id){
+        userService.deleteById(id);
+        return "redirect:/users";
+    }
 }
