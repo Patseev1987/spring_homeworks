@@ -39,8 +39,22 @@ public class UserController {
     }
 
     @GetMapping("user-delete/{id}")
-    public String deleteUserById(@PathVariable int id){
+    public String deleteUserById(@PathVariable("id") int id){
         userService.deleteById(id);
         return "redirect:/users";
     }
+
+    @GetMapping("/user-update/{id}")
+    public String createUserForm(Model model,@PathVariable("id") int id){
+        model.addAttribute("user",userService.findUserById(id));
+        return "user-update";
+    }
+
+    @PostMapping("/user-update")
+    public String updateUser(User user){
+        userService.updateUser(user);
+        return "redirect:/users";
+    }
+
+
 }
