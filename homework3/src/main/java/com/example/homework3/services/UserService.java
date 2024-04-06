@@ -11,9 +11,7 @@ public class UserService {
     @Autowired
     private NotificationService notificationService;
 
-    //    public UserService(NotificationService notificationService) {
-    //        this.notificationService = notificationService;
-    //    }
+
 
     public User createUser(String name, int age, String email) {
         User user = new User();

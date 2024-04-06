@@ -1,6 +1,7 @@
 package com.example.homework3.services;
 import com.example.homework3.domain.User;
 import com.example.homework3.repository.UserRepository;
+import com.example.homework3.repository.UserRepositoryWithJDBC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Comparator;
@@ -11,15 +12,15 @@ import java.util.stream.Collectors;
 public class DataProcessingService {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepositoryWithJDBC repository;
 
-    public UserRepository getRepository() {
+    public UserRepositoryWithJDBC getRepository() {
         return repository;
     }
 
     public void  addUserToList(User user)
     {
-        repository.getUsers().add(user);
+        repository.addUser(user);
     }
 
     public List<User> sortUsersByAge(List<User> users) {
