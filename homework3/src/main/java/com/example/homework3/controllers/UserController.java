@@ -23,7 +23,7 @@ public class UserController {
     @PostMapping("/body")
     public String userAddFromBody(@RequestBody User user)
     {
-        service.getDataProcessingService().getRepository().getUsers().add(user);
+        service.processRegistration(user.getName(), user.getAge(), user.getEmail());
         return "User added from body!";
     }
 }
