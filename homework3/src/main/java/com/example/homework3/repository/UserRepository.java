@@ -1,8 +1,7 @@
-package ru.gb.example3_sem3_hometask.repository;
+package com.example.homework3.repository;
 
+import com.example.homework3.domain.User;
 import org.springframework.stereotype.Repository;
-import ru.gb.example3_sem3_hometask.domain.User;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.gb.example3_sem3_hometask.domain;
+package com.example.homework3.domain;
 
 public class User {
 

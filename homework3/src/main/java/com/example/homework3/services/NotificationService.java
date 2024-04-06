@@ -1,7 +1,8 @@
-package ru.gb.example3_sem3_hometask.services;
+package com.example.homework3.services;
 
+import com.example.homework3.domain.User;
 import org.springframework.stereotype.Service;
-import ru.gb.example3_sem3_hometask.domain.User;
+
 
 @Service
 public class NotificationService {

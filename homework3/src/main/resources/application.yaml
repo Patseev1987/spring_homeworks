@@ -1,0 +1,3 @@
+#spring.application.name=homework3
+server:
+  port: 1337

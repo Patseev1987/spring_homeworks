@@ -1,10 +1,8 @@
-package ru.gb.example3_sem3_hometask.services;
-
+package com.example.homework3.services;
+import com.example.homework3.domain.User;
+import com.example.homework3.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.gb.example3_sem3_hometask.domain.User;
-import ru.gb.example3_sem3_hometask.repository.UserRepository;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

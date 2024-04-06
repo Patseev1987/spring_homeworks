@@ -1,11 +1,12 @@
-package ru.gb.example3_sem3_hometask.controllers;
+package com.example.homework3.controllers;
 
+import com.example.homework3.domain.User;
+import com.example.homework3.services.DataProcessingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.example3_sem3_hometask.domain.User;
-import ru.gb.example3_sem3_hometask.services.DataProcessingService;
+
 
 import java.util.ArrayList;
 import java.util.List;

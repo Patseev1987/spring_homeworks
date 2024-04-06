@@ -1,9 +1,10 @@
-package ru.gb.example3_sem3_hometask.controllers;
+package com.example.homework3.controllers;
 
+import com.example.homework3.domain.User;
+import com.example.homework3.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.example3_sem3_hometask.services.RegistrationService;
-import ru.gb.example3_sem3_hometask.domain.User;
+
 
 import java.util.List;
 
