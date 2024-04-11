@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cats</title>
-    <link rel="stylesheet" th:href="@{/styles/css/style.css}">
+    <link rel="stylesheet" th:href="@{/style/css/style.css}">
 </head>
 <body>
 <div th:switch="${cats}">
@@ -23,13 +23,13 @@
                 <td th:text="${cat.id}"></td>
                 <td th:text="${cat.name}"></td>
                 <td th:text="${cat.age}"></td>
-                <td><a th:href="@{/catsApi/cat-update/{id}(id=${cat.id})}">Edit</a></td>
-                <td><a th:href="@{/catsApi/cat-delete/{id}(id=${cat.id})}">Delete</a></td>
+                <td><a th:href="@{/cat-update/{id}(id=${cat.id})}">Edit</a></td>
+                <td><a th:href="@{/cat-delete/{id}(id=${cat.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/catsApi/cat-create">Create cat</a></p>
+    <p><a href="/cat-create">Create cat</a></p>
 </div>
 </body>
 </html>

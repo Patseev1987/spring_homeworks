@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/catsApi")
+
 public class CatController {
 
     private CatService catService;
@@ -40,13 +40,13 @@ public class CatController {
     @PostMapping("/cat-create")
     public String createUser(Cat cat) {
         catService.addCat(cat);
-        return "redirect:cats";
+        return "redirect:/cats";
     }
 
     @GetMapping("/cat-delete/{id}")
     public String deleteUserById(@PathVariable("id") Long id) {
         catService.deleteCatById(id);
-        return "redirect:/catsApi/cats";
+        return "redirect:/cats";
     }
 
     @GetMapping("/cat-update/{id}")
@@ -58,7 +58,7 @@ public class CatController {
     @PostMapping("/cat-update")
     public String updateUser(Cat cat) {
         catService.updateCat(cat);
-        return "redirect:cats";
+        return "redirect:/cats";
     }
 
 
