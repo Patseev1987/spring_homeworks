@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="card">
 <form action="#" th:action="@{/catsApi/cat-create}" th:object="${cat}" method="post">
     <label for="name">Cat name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
@@ -13,5 +14,6 @@
     <input type="text" th:field="*{age}" id="age" placeholder="Age">
     <input type="submit" value="Create Cat">
 </form>
+</div>
 </body>
 </html>
