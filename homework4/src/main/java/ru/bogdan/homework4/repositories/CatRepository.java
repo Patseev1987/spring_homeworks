@@ -1,10 +1,12 @@
 package ru.bogdan.homework4.repositories;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.bogdan.homework4.domain.Cat;
+import ru.bogdan.homework4.property.SQLCustomProperty;
 
 import java.util.List;
 @Repository
@@ -13,11 +15,12 @@ public class CatRepository {
 
 
     private final JdbcTemplate jdbc;
-
-
+    //use custom property for SQL queries
+    //property base on SQLCustomProperty
+    private final SQLCustomProperty sQLCustomProperty;
 
     public List<Cat> findAll() {
-        String sql = "SELECT * FROM catsTable";
+        String sql = sQLCustomProperty.getFindAll();
 
         RowMapper<Cat> catsRowMapper = (r, i) -> {
             Cat rowObject = new Cat();
@@ -31,19 +34,19 @@ public class CatRepository {
     }
 
     public Cat saveCat(Cat cat) {
-        String sql = "INSERT INTO catsTable (name,age) VALUES ( ?, ?)";
+        String sql = sQLCustomProperty.getSaveCat();
         jdbc.update(sql, cat.getName(), cat.getAge());
         return cat;
     }
 
     public void deleteCatById(Long id) {
-        String sql = "DELETE FROM  catsTable WHERE id=?";
+        String sql = sQLCustomProperty.getDeleteCatById();
         jdbc.update(sql, id);
     }
 
 
     public Cat findCatById(Long id) {
-        String sql = "SELECT * FROM catsTable WHERE id=?";
+        String sql = sQLCustomProperty.getFindCatByName();
         RowMapper<Cat> catsRowMapper = (r, i) -> {
             Cat rowObject = new Cat();
             rowObject.setId(r.getLong("id"));
@@ -60,7 +63,7 @@ public class CatRepository {
     }
 
     public Cat updateCat(Cat cat) {
-        String sql = "UPDATE catsTable SET name = ?, age = ? WHERE id=?";
+        String sql = sQLCustomProperty.getUpdateCat();
         jdbc.update(sql, cat.getName(), cat.getAge(), cat.getId());
         return cat;
     }

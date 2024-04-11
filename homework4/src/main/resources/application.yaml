@@ -1,0 +1,6 @@
+custom-sql:
+  findAll: SELECT * FROM catsTable
+  saveCat: INSERT INTO catsTable (name,age) VALUES ( ?, ?)
+  delete-cat-by-id: DELETE FROM  catsTable WHERE id=?
+  find-cat-by-name: SELECT * FROM catsTable WHERE id=?
+  update-cat: UPDATE catsTable SET name = ?, age = ? WHERE id=?
