@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: myuser
+    password: secret
+    url: jdbc:postgresql://localhost:5432/mydatabase
+  jpa:
+   properties:
+     hibernate:
+       show_sql: true
+       # spring doesn't want to create a table without that setting
+       hbm2ddl:
+         auto: update
