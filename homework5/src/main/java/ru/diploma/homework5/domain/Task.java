@@ -2,6 +2,7 @@ package ru.diploma.homework5.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
