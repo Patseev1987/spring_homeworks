@@ -34,7 +34,7 @@ public class TaskRestController {
         taskService.updateTaskStatusById(id, task);
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTaskById(id);
     }
