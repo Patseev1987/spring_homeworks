@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: postgres
+    image: bitnami/postgresql:13.14.0
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=mydatabase
+    ports:
+      - "5432:5432"
