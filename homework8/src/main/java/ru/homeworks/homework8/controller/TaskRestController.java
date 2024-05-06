@@ -15,7 +15,7 @@ import java.util.List;
 public class TaskRestController {
     private final TaskService taskService;
 
-    @GetMapping ("/tasks")
+    @GetMapping("/tasks")
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }

@@ -2,6 +2,8 @@ package ru.homeworks.homework8.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.homeworks.homework8.aspects.TrackUserActionAfterReturn;
+import ru.homeworks.homework8.aspects.TrackUserActionBefore;
 import ru.homeworks.homework8.domain.Task;
 import ru.homeworks.homework8.domain.TaskStatus;
 import ru.homeworks.homework8.repository.TaskRepository;
@@ -17,23 +19,26 @@ public class TaskService {
 
     //init block of code for creat tasksTable
     {
-        initData();
+             initData();
     }
 
-
+    @TrackUserActionAfterReturn
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
+    @TrackUserActionAfterReturn
     public Task addTask(Task task) {
         task.setCreateDate(LocalDate.now());
         return taskRepository.save(task);
     }
 
+    @TrackUserActionAfterReturn
     public List<Task> getTasksByStatus(TaskStatus status) {
         return taskRepository.findAllByStatus(status);
     }
 
+    @TrackUserActionBefore
     public void updateTaskStatusById(Long id, Task task) {
         var oldTask = taskRepository.findById(id).orElse(null);
         if (oldTask != null) {
@@ -45,7 +50,7 @@ public class TaskService {
 
     }
 
-
+    @TrackUserActionBefore
     public void deleteTaskById(Long id) {
         taskRepository.deleteById(id);
     }
