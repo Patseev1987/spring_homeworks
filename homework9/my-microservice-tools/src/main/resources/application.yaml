@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Microservice1
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: myuser
+    password: secret
+    url: jdbc:postgresql://localhost:5432/mydatabase
+  jpa:
+   properties:
+     hibernate:
+       show_sql: true
+       hbm2ddl:
+         auto: update
+server:
+  port: 8081
+
