@@ -1,17 +1,16 @@
 spring:
   application:
-    name: my-microservice-tools
+    name: my-microservice-workers
   datasource:
     driver-class-name: org.postgresql.Driver
     username: myuser
     password: secret
     url: jdbc:postgresql://localhost:5432/mydatabase
   jpa:
-   properties:
-     hibernate:
-       show_sql: true
-       hbm2ddl:
-         auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        hbm2ddl:
+          auto: update
 server:
-  port: 8081
-
+  port: 8082
