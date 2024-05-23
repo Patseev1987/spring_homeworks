@@ -38,6 +38,10 @@ public class SweetEaterService {
          eaterRepository.deleteById(id);
     }
 
+    public SweetEater getSweetEater (Long id) {
+        return eaterRepository.findById(id).orElseThrow();
+    }
+
     // this code fills database
     private void initData() {
         new Thread(() -> {

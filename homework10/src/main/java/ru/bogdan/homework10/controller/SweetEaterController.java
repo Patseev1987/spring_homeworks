@@ -30,4 +30,9 @@ public class SweetEaterController {
     public void delete(@PathVariable Long id) {
         sweetEaterService.deleteEater(id);
     }
+
+    @GetMapping("/eaters/{id}")
+    public SweetEater getEater(@PathVariable Long id) {
+        return sweetEaterService.getSweetEater(id);
+    }
 }

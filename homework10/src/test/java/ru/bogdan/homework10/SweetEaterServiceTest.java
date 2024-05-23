@@ -9,8 +9,10 @@ import ru.bogdan.homework10.domain.SweetEater;
 import ru.bogdan.homework10.repository.SweetEaterRepository;
 import ru.bogdan.homework10.service.SweetEaterService;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -45,4 +47,29 @@ public class SweetEaterServiceTest {
         verify(sweetEaterRepository).save(SweetEater.builder().id(1L).name("John").sweetsCount(80).build());
         verify(sweetEaterRepository).save(SweetEater.builder().id(2L).name("Alice").sweetsCount(50).build());
     }
+
+
+    @Test
+    public void eaterNotFoundById(){
+        given(sweetEaterRepository.findById(100L)).willThrow(new NoSuchElementException());
+
+        assertThrows(NoSuchElementException.class, () ->   sweetEaterService.getSweetEater(100L));
+
+        verify(sweetEaterRepository).findById(100L);
+    }
+
+    @Test
+    public void checkDeleteEater(){
+
+        sweetEaterService.deleteEater(20L);
+
+        verify(sweetEaterRepository).deleteById(20L);
+    }
+
+    @Test
+    public void checkGetAllSweetEaters(){
+        sweetEaterService.getAllSweetEaters();
+        verify(sweetEaterRepository).findAll();
+    }
+
 }

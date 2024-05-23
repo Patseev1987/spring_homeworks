@@ -10,9 +10,7 @@ import ru.bogdan.homework10.service.SweetEaterService;
 
 import java.util.Optional;
 
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class SweetEaterServiceIntegrationTest {
@@ -46,5 +44,22 @@ public class SweetEaterServiceIntegrationTest {
         //block of check
         verify(sweetEaterRepository).save(SweetEater.builder().id(1L).name("John").sweetsCount(80).build());
         verify(sweetEaterRepository).save(SweetEater.builder().id(2L).name("Alice").sweetsCount(50).build());
+    }
+
+
+    @Test
+    public void checkDeleteEater(){
+
+        sweetEaterService.deleteEater(20L);
+
+        verify(sweetEaterRepository).deleteById(20L);
+    }
+
+
+    // we should set 2 times, because we have init data method
+    @Test
+    public void checkGetAllSweetEaters(){
+        sweetEaterService.getAllSweetEaters();
+        verify(sweetEaterRepository,times(2)).findAll();
     }
 }
