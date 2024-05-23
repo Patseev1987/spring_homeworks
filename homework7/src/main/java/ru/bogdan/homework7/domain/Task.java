@@ -2,7 +2,7 @@ package ru.bogdan.homework7.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.time.LocalDate;
 

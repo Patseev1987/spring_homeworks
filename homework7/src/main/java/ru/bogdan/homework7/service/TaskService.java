@@ -1,4 +1,5 @@
 package ru.bogdan.homework7.service;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.bogdan.homework7.domain.Task;
@@ -16,7 +17,7 @@ public class TaskService {
 
     //init block of code for creat tasksTable
     {
-        initData();
+      //  initData();
     }
 
 

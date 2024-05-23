@@ -2,6 +2,7 @@ package ru.bogdan.homework7.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,11 +21,15 @@ public class MySecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/tasks", "api/status/**").hasAnyRole("USER")
-                        .requestMatchers("/api/add", "api/**", "api/delete/**").hasAnyRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET,"/").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/tasks").hasAnyRole("USER")
+                        .requestMatchers(HttpMethod.POST,"/api/add").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/delete/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/api/status/**").hasAnyRole("ADMIN")
+                                .anyRequest().authenticated()
+                ).logout(logout -> logout.logoutUrl("/api"))
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults());
         return http.build();
@@ -37,8 +42,10 @@ public class MySecurityConfig {
 
     @Bean
     UserDetailsManager inMemoryUserDetailsManager() {
-        var user1 = User.withUsername("user").password("{noop}user").roles("USER").build();
-        var user2 = User.withUsername("admin").password("{noop}123").roles("USER", "ADMIN").build();
-        return new InMemoryUserDetailsManager(user1, user2);
+        var user = User.withUsername("user").password("{noop}user").roles("USER").build();
+        var admin = User.withUsername("admin").password("{noop}admin").roles("USER", "ADMIN").build();
+
+        return new InMemoryUserDetailsManager(user, admin);
     }
 }
+

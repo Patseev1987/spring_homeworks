@@ -7,6 +7,7 @@ import ru.bogdan.homework7.domain.TaskStatus;
 import ru.bogdan.homework7.service.TaskService;
 
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -14,6 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskRestController {
     private final TaskService taskService;
+
+    @RequestMapping("/")
+    public String getIndex() {
+        return "index.html";
+    }
 
     @GetMapping ("/tasks")
     public List<Task> getAllTasks() {
