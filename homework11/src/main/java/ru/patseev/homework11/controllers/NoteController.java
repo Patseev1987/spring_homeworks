@@ -1,5 +1,7 @@
 package ru.patseev.homework11.controllers;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Metrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,13 @@ import java.util.List;
 @RequestMapping("/api")
 public class NoteController {
     private final NoteService noteService;
+    //metrics for prometheus and grafana
+    private final Counter getAllNotesCounter = Metrics.counter("get_all_notes");
 
     // get all notes
     @GetMapping("/notes")
     public ResponseEntity<List<Note>> listNotes() {
+        getAllNotesCounter.increment();
         return new ResponseEntity<>(noteService.getAllNotes(), HttpStatus.OK);
     }
 
