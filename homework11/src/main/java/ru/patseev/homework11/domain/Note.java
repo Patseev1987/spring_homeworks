@@ -1,6 +1,8 @@
 package ru.patseev.homework11.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 @Table(name = "notes")
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

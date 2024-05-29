@@ -16,6 +16,10 @@ import java.util.Optional;
 public class NoteService {
     private final NoteRepositories noteRepositories;
 
+//    {
+//        initData();
+//    }
+
     // create new note in database and set create date
     public Note createNote(Note note) {
         note.setCreateDate(LocalDate.now());
@@ -40,5 +44,25 @@ public class NoteService {
         noteBeforeUpdate.setContent(note.getContent());
         noteBeforeUpdate.setTitle(note.getTitle());
         return noteRepositories.save(noteBeforeUpdate);
+    }
+
+    //fill up the database
+    private void initData(){
+        new Thread(()-> {
+            var notes = List.of(
+                    Note.builder().title("say hello").content("Should say hello to my friends").build(),
+                    Note.builder().title("wash dishes").content("Wash all dishes").build(),
+                    Note.builder().title("fix code").content("should fix code").build(),
+                    Note.builder().title("walk").content("Should walk with my wife").build()
+            );
+            try {
+                Thread.sleep(500);
+
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            notes.forEach(this::createNote);
+        }).start();
     }
 }
